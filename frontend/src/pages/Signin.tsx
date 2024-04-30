@@ -21,7 +21,7 @@ const SignIn = () => {
 
   const mutation = useMutation(apiClient.SignIn, {
     onSuccess: async () => {
-      showToast({ message: "Sign in successful", type: "SUCCESS" });
+      showToast({ message: "Sign in Successful", type: "SUCCESS" });
       await queryClient.invalidateQueries("validateToken");
       navigate("/");
     },
@@ -58,7 +58,7 @@ const SignIn = () => {
             required: "This field is required",
             minLength: {
               value: 6,
-              message: "Password must be atleast 6 characters",
+              message: "Password must be at least 6 characters",
             },
           })}
         ></input>

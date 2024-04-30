@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
-import checks, { check, validationResult } from "express-validator";
+import { check, validationResult } from "express-validator";
 
 const router = express.Router();
 
@@ -9,13 +9,12 @@ const router = express.Router();
 router.post(
   "/register",
   [
-    check("firstName", "First name is required").isString(),
-    check("lastName", "Last name is required").isString(),
-    check("email", "email is required").isEmail(),
-    check(
-      "password",
-      "Password with 6 or more characters is required"
-    ).isLength({ min: 6 }),
+    check("firstName", "First Name is required").isString(),
+    check("lastName", "Last Name is required").isString(),
+    check("email", "Email is required").isEmail(),
+    check("password", "Password with 6 or more characters required").isLength({
+      min: 6,
+    }),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);

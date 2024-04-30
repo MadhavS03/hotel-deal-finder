@@ -84,7 +84,7 @@ const Register = () => {
             required: "This field is required",
             minLength: {
               value: 6,
-              message: "Password must be atleast 6 characters",
+              message: "Password must be at least 6 characters",
             },
           })}
         ></input>

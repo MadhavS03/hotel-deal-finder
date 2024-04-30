@@ -30,7 +30,7 @@ const App = () => {
           path="/search"
           element={
             <Layout>
-              <Search/>
+              <Search />
             </Layout>
           }
         />

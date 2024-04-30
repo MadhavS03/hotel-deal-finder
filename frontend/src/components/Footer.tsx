@@ -7,10 +7,11 @@ const Footer = () => {
         </span>
         <span className="text-white font-bold tracking-tight flex gap-4">
           <p className="cursor-pointer">Privacy Policy</p>
-          <p className="cursor-pointer">Terms of service</p>
+          <p className="cursor-pointer">Terms of Service</p>
         </span>
       </div>
     </div>
   );
 };
+
 export default Footer;

@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <div className="bg-gradient-to-r from-orange-500 to-orange-500 py-6">
       <div className="container mx-auto flex justify-between">
-        <span className="text-4xl text-white font-bold tracking-tight">
+        <span className="text-3xl text-white font-bold tracking-tight">
           <Link to="/">LOGO</Link>
         </span>
         <span className="flex space-x-6 space-between items-center">

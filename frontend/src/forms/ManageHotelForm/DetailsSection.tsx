@@ -46,7 +46,6 @@ const DetailsSection = () => {
           )}
         </label>
       </div>
-
       <label className="text-gray-700 text-sm font-bold flex-1">
         Description
         <textarea
@@ -82,9 +81,7 @@ const DetailsSection = () => {
             Select a Rating
           </option>
           {[1, 2, 3, 4, 5].map((num) => (
-            <option key={num} value={num}>
-              {num}
-            </option>
+            <option value={num}>{num}</option>
           ))}
         </select>
         {errors.starRating && (
