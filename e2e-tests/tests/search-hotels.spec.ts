@@ -15,15 +15,15 @@ test.beforeEach(async ({ page }) => {
 
   await page.getByRole("button", { name: "Login" }).click();
 
-  await expect(page.getByText("Sign in Successful!")).toBeVisible();
+  await expect(page.getByText("Sign in Successful")).toBeVisible();
 });
 
 test("should show hotel search results", async ({ page }) => {
   await page.goto(UI_URL);
 
-  await page.getByPlaceholder("Where are you going?").fill("Delhi");
+  await page.getByPlaceholder("Where are you going?").fill("Dublin");
   await page.getByRole("button", { name: "Search" }).click();
 
-  await expect(page.getByText("Hotels found in Delhi")).toBeVisible();
-  await expect(page.getByText("ITC")).toBeVisible();
+  await expect(page.getByText("Hotels found in Dublin")).toBeVisible();
+  await expect(page.getByText("Dublin Getaways")).toBeVisible();
 });
