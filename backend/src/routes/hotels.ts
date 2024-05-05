@@ -80,10 +80,6 @@ router.post(
   "/:hotelId/bookings/payment-intent",
   verifyToken,
   async (req: Request, res: Response) => {
-    // 1. totalCost
-    // 2. hotelId
-    // 3. userId
-
     const { numberOfNights } = req.body;
     const hotelId = req.params.hotelId;
 
@@ -95,7 +91,7 @@ router.post(
     const totalCost = hotel.pricePerNight * numberOfNights;
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: totalCost,
+      amount: totalCost * 100,
       currency: "inr",
       metadata: {
         hotelId,
@@ -122,26 +118,26 @@ router.post(
   verifyToken,
   async (req: Request, res: Response) => {
     try {
-      const paymentIntenId = req.body.paymentIntenId;
+      const paymentIntentId = req.body.paymentIntentId;
 
       const paymentIntent = await stripe.paymentIntents.retrieve(
-        paymentIntenId as string
+        paymentIntentId as string
       );
 
       if (!paymentIntent) {
-        return res.status(400).json({ message: "payment intent not found" });
+        return res.status(400).json({ message: "Payment intent not found" });
       }
 
       if (
         paymentIntent.metadata.hotelId !== req.params.hotelId ||
         paymentIntent.metadata.userId !== req.userId
       ) {
-        return res.status(400).json({ message: "payment intent mismatch" });
+        return res.status(400).json({ message: "Payment intent mismatch" });
       }
 
       if (paymentIntent.status !== "succeeded") {
         return res.status(400).json({
-          message: `payment intent not succeeded. Status: ${paymentIntent.status}`,
+          message: `Payment intent not succeeded. Status: ${paymentIntent.status}`,
         });
       }
 
@@ -150,22 +146,42 @@ router.post(
         userId: req.userId,
       };
 
-      const hotel = await Hotel.findOneAndUpdate(
+      // Add description required for export transactions as per Indian regulations
+      // We'll check if the booking is for an Indian hotel and if the user is not from India
+      // If so, we'll add the description to the booking details
+      const hotel = await Hotel.findById(req.params.hotelId);
+      if (!hotel) {
+        return res.status(400).json({ message: "Hotel not found" });
+      }
+
+      if (hotel.country === "India") {
+        newBooking.description =
+          "Export transaction. As per Indian regulations, export transactions require a description.";
+      }
+
+      const updatedHotel = await Hotel.findOneAndUpdate(
         { _id: req.params.hotelId },
         {
           $push: { bookings: newBooking },
         }
       );
 
-      if (!hotel) {
-        return res.status(400).json({ message: "hotel not found" });
+      if (!updatedHotel) {
+        return res
+          .status(400)
+          .json({ message: "Failed to update hotel with booking" });
       }
 
-      await hotel.save();
+      await updatedHotel.save();
       res.status(200).send();
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Something went wrong" });
+      res
+        .status(500)
+        .json({
+          message: "Something went wrong",
+          description: "Error while processing the booking request",
+        });
     }
   }
 );

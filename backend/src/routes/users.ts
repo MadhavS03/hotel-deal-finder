@@ -21,7 +21,6 @@ router.get("/me", verifyToken, async (req: Request, res: Response) => {
   }
 });
 
-// /api/users//register
 router.post(
   "/register",
   [

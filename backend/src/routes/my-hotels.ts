@@ -40,20 +40,15 @@ router.post(
       const imageFiles = req.files as Express.Multer.File[];
       const newHotel: HotelType = req.body;
 
-      //1. upload the images to cloudianry
-
       const imageUrls = await uploadImages(imageFiles);
+
       newHotel.imageUrls = imageUrls;
       newHotel.lastUpdated = new Date();
       newHotel.userId = req.userId;
 
-      //2. if upload was successful, add the URLs to the new hotel
-
-      //3. save the new hotel in our database
-
       const hotel = new Hotel(newHotel);
       await hotel.save();
-      //4. return a 201 status
+
       res.status(201).send(hotel);
     } catch (e) {
       console.log(e);

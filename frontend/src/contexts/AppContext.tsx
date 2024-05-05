@@ -15,6 +15,8 @@ type AppContext = {
   showToast: (toastMessage: ToastMessage) => void;
   isLoggedIn: boolean;
   stripePromise: Promise<Stripe | null>;
+  bookingDescription: string;
+  setBookingDescription: (description: string) => void;
 };
 
 const AppContext = React.createContext<AppContext | undefined>(undefined);
@@ -27,6 +29,7 @@ export const AppContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
+  const [bookingDescription, setBookingDescription] = useState<string>("");
 
   const { isError } = useQuery("validateToken", apiClient.validateToken, {
     retry: false,
@@ -40,6 +43,10 @@ export const AppContextProvider = ({
         },
         isLoggedIn: !isError,
         stripePromise,
+        bookingDescription,
+        setBookingDescription: (description) => {
+          setBookingDescription(description);
+        },
       }}
     >
       {toast && (
@@ -53,6 +60,7 @@ export const AppContextProvider = ({
     </AppContext.Provider>
   );
 };
+
 export const useAppContext = () => {
   const context = useContext(AppContext);
   return context as AppContext;
