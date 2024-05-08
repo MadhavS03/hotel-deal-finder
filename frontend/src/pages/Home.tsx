@@ -14,8 +14,8 @@ const Home = () => {
     <div className="space-y-0" style={{ fontFamily: "'Inter', sans-serif" }}>
       <h2 className="text-4xl mb-2 font-bold tracking-tight text-gray-900">Latest Destinations</h2>
       <p className="text-sm pb-6 text-gray-500 font-black uppercase">Most recent destinations</p>
-      <div className="grid gap-4">
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+      <div className="grid gap-2">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
           {topRowHotels.map((hotel) => (
             <LatestDestinationCard hotel={hotel} />
           ))}

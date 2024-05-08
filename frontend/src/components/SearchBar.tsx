@@ -132,7 +132,7 @@ const SearchBar = () => {
           Search
         </button>
         <button
-          className="w-1/3 bg-red-500 text-white h-full p-2 font-bold text-xl hover:bg-red-700"
+          className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-700"
           style={{
             fontFamily: "'Inter', sans-serif",
             transition: "all 0.3s",
