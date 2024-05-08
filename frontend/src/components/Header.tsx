@@ -7,7 +7,7 @@ import SignOutButton from "./SignOutButton";
 const Header = () => {
   const { isLoggedIn } = useAppContext();
   const [isHovered, setIsHovered] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const [, setHasLoaded] = useState(false);
 
   useEffect(() => {
     setHasLoaded(true);
