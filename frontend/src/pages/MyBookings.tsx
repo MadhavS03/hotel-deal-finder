@@ -12,7 +12,12 @@ const MyBookings = () => {
   }
 
   return (
-    <div className="space-y-5">
+    <div
+      className="space-y-5"
+      style={{
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
       <h1 className="text-3xl font-bold">My Bookings</h1>
       {hotels.map((hotel) => (
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_3fr] border border-slate-300 rounded-lg p-8 gap-5">

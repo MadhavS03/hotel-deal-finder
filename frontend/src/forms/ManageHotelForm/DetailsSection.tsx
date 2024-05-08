@@ -8,7 +8,12 @@ const DetailsSection = () => {
   } = useFormContext<HotelFormData>();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div
+      className="flex flex-col gap-4"
+      style={{
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
       <h1 className="text-3xl font-bold mb-3">Add Hotel</h1>
       <label className="text-gray-700 text-sm font-bold flex-1">
         Name

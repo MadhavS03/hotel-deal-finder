@@ -8,7 +8,11 @@ const GuestsSection = () => {
   } = useFormContext<HotelFormData>();
 
   return (
-    <div>
+    <div
+      style={{
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
       <h2 className="text-2xl font-bold mb-3">Guests</h2>
       <div className="grid grid-cols-2 p-6 gap-5 bg-gray-300">
         <label className="text-gray-700 text-sm font-semibold">

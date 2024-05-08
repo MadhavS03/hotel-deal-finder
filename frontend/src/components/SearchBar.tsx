@@ -15,6 +15,8 @@ const SearchBar = () => {
   const [adultCount, setAdultCount] = useState<number>(search.adultCount);
   const [childCount, setChildCount] = useState<number>(search.childCount);
 
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     search.saveSearchValues(
@@ -31,10 +33,23 @@ const SearchBar = () => {
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() + 1);
 
+  const searchbarStyle = {
+    transition: "transform 0.3s ease-in-out"
+  };
+  
+  const searchbarHoverStyle = {
+    transform: "scale(1.05)"
+  };
+  
+
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="-mt-8 p-3 bg-orange-400 rounded shadow-md grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 items-center gap-4"
+      className="search-bar -mt-8 p-3 bg-orange-400 rounded shadow-md grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 items-center gap-4"
+      style={isHovered ? { ...searchbarStyle, ...searchbarHoverStyle } : searchbarStyle}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex flex-row items-center flex-1 bg-white p-2">
         <MdTravelExplore size={25} className="mr-2" />
@@ -43,10 +58,18 @@ const SearchBar = () => {
           className="text-md w-full focus:outline-none"
           value={destination}
           onChange={(event) => setDestination(event.target.value)}
+          style={{
+            fontFamily: "'Inter', sans-serif",
+          }}
         />
       </div>
 
-      <div className="flex bg-white px-2 py-1 gap-2">
+      <div
+        className="flex bg-white px-2 py-1 gap-2"
+        style={{
+          fontFamily: "'Inter', sans-serif",
+        }}
+      >
         <label className="items-center flex">
           Adults:
           <input
@@ -99,10 +122,20 @@ const SearchBar = () => {
         />
       </div>
       <div className="flex gap-1">
-        <button className="w-2/3 bg-orange-500 text-white h-full p-2 font-bold text-xl hover:bg-white hover:text-orange-500">
+        <button
+          className="w-2/3 bg-white text-orange-500 h-full p-2 font-bold text-xl hover:bg-orange-600 hover:text-white"
+          style={{
+            fontFamily: "'Inter', sans-serif",
+          }}
+        >
           Search
         </button>
-        <button className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500">
+        <button
+          className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500"
+          style={{
+            fontFamily: "'Inter', sans-serif",
+          }}
+        >
           Clear
         </button>
       </div>
