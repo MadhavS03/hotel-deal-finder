@@ -4,19 +4,21 @@ const Hero = () => {
   useEffect(() => {
     const paragraph = document.querySelector(".typing-effect");
     if (!paragraph) return;
-
+  
     const text = "Search low prices on hotels for your dream vacation...";
     let index = 0;
-
+  
+    paragraph.textContent = '';
+  
     const typingInterval = setInterval(() => {
       paragraph.textContent += text[index];
       index++;
-
+  
       if (index === text.length) {
         clearInterval(typingInterval);
       }
-    }, 70);
-
+    }, 60); // Decreased interval for a smoother effect
+  
     return () => clearInterval(typingInterval);
   }, []);
 
@@ -37,7 +39,7 @@ const Hero = () => {
             fontFamily: "'Inter', sans-serif",
             overflow: "hidden",
             whiteSpace: "nowrap",
-            animation: "typing 1s steps(40, end), blink-caret 0.75s step-end infinite",
+            animation: "typing 2.5s steps(40, end), blink-caret 0.75s step-end infinite",
           }}
         ></p>
       </div>

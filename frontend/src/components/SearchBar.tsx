@@ -34,11 +34,11 @@ const SearchBar = () => {
   maxDate.setFullYear(maxDate.getFullYear() + 1);
 
   const searchbarStyle = {
-    transition: "transform 0.3s ease-in-out"
+    transition: "transform 0.4s ease-in-out"
   };
   
   const searchbarHoverStyle = {
-    transform: "scale(1.05)"
+    transform: "scale(1.07)"
   };
   
 
@@ -126,14 +126,16 @@ const SearchBar = () => {
           className="w-2/3 bg-white text-orange-500 h-full p-2 font-bold text-xl hover:bg-orange-600 hover:text-white"
           style={{
             fontFamily: "'Inter', sans-serif",
+            transition: "all 0.3s",
           }}
         >
           Search
         </button>
         <button
-          className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500"
+          className="w-1/3 bg-red-500 text-white h-full p-2 font-bold text-xl hover:bg-red-700"
           style={{
             fontFamily: "'Inter', sans-serif",
+            transition: "all 0.3s",
           }}
         >
           Clear

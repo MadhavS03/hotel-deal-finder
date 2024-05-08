@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { User } from "@phosphor-icons/react";
 import { useAppContext } from "../contexts/AppContext";
 import SignOutButton from "./SignOutButton";
@@ -7,11 +7,6 @@ import SignOutButton from "./SignOutButton";
 const Header = () => {
   const { isLoggedIn } = useAppContext();
   const [isHovered, setIsHovered] = useState(false);
-  const [, setHasLoaded] = useState(false);
-
-  useEffect(() => {
-    setHasLoaded(true);
-  }, []);
 
   return (
     <div className="bg-orange-500 py-6">
@@ -25,8 +20,6 @@ const Header = () => {
           <Link
             className="flex gap-2 items-center"
             to="/"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
           >
             StayEasy{" "}
             <img
@@ -34,8 +27,6 @@ const Header = () => {
               style={{
                 width: "30px",
                 height: "30px",
-                transition: "transform 0.3s", // Added transition for rotation
-                transform: isHovered ? "rotate(180deg)" : "rotate(0deg)", // Rotate image on hover
               }}
               src="/home.png"
               alt=""
@@ -46,7 +37,7 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <Link
-                className="flex items-center text-lg text-stone-800 px-3 py-1 font-bold hover:bg-orange-400"
+                className="flex items-center text-white text-lg text-stone-800 px-3 py-1 font-bold hover:bg-orange-400"
                 to="/my-bookings"
                 style={{
                   fontFamily: "'Inter', sans-serif",
@@ -55,7 +46,7 @@ const Header = () => {
                 My Bookings
               </Link>
               <Link
-                className="flex items-center text-lg text-stone-800 px-3 py-1 font-bold hover:bg-orange-400"
+                className="flex items-center text-white text-lg text-stone-800 px-3 py-1 font-bold hover:bg-orange-400"
                 to="/my-hotels"
                 style={{
                   fontFamily: "'Inter', sans-serif",
@@ -68,19 +59,21 @@ const Header = () => {
           ) : (
             <Link
               to="/sign-in"
-              className="flex items-center text-orange-500 bg-white px-3 py-2.5 pb-2.5 font-bold hover:bg-orange-600 hover:text-white mt-1"
+              className="flex items-center text-orange-500 rounded bg-white px-3 py-1.5 font-bold mt-1"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                transition: "all 0.3s",
+                color: isHovered ? "#FFF" : "#f97316",
+                backgroundColor: isHovered ? "#ea580c" : "white",
+              }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              style={{
-                borderRadius: "0.3rem",
-                transition: "all 0.3s",
-              }}
             >
               <User
-                className="mt-1"
                 size={20}
                 style={{
                   color: isHovered ? "#FFF" : "#f97316",
+                  transition: "color 0.3s",
                 }}
               />
               <span className="ml-2 text-lg">Sign In</span>

@@ -21,9 +21,11 @@ const SignOutButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="text-orange-500 px-3 py-1 text-lg font-bold bg-white hover:bg-gray-100"
+      className="text-orange-500 px-3 py-1 rounded text-lg font-bold bg-white hover:bg-orange-600 hover:text-white" 
+      // text-orange-500 bg-white px-3 py-2.5 pb-2.5 font-bold hover:bg-orange-600 hover:text-white
       style={{
         fontFamily: "'Inter', sans-serif",
+                transition: "all 0.3s",
       }}
     >
       Sign Out
