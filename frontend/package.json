@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@phosphor-icons/react": "^2.1.4",
     "@stripe/react-stripe-js": "^2.7.0",
     "@stripe/stripe-js": "^3.3.0",
+    "keen-slider": "^6.8.6",
     "react": "^18.2.0",
     "react-datepicker": "^6.7.0",
     "react-dom": "^18.2.0",
@@ -26,6 +29,7 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/react": "^18.2.66",
     "@types/react-datepicker": "^6.2.0",
     "@types/react-dom": "^18.2.22",
